@@ -1,5 +1,6 @@
-// Change this to your machine's LAN IP when opening the page on a phone.
-const API_URL = new URLSearchParams(location.search).get("api") || "http://localhost:8000";
+const API_URL = (
+  new URLSearchParams(location.search).get("api") ||
+  import.meta.env.VITE_API_URL).replace(/\/+$/, "");
 const SAMPLE_RATE_MS = 20;
 const deviceId = `web-${crypto.randomUUID ? crypto.randomUUID() : Date.now()}`;
 
