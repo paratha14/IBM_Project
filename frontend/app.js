@@ -13,7 +13,6 @@ const videoInput = $("videoInput"), videoButton = $("videoButton"), videoMessage
 let selectedVideo, socket, latestMotion, sendTimer, collecting = false;
 
 $("backendUrl").textContent = API_URL;
-$("backendText").textContent = "server running";
 
 document.querySelectorAll(".mode-button").forEach((button) => button.addEventListener("click", () => {
   const sensorMode = button.dataset.mode === "sensor";
