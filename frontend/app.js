@@ -1,6 +1,9 @@
+const ENV_URL = import.meta.env.API_URL;
 const API_URL = (
   new URLSearchParams(location.search).get("api") ||
-  import.meta.env.API_URL).replace(/\/+$/, "");
+  ENV_URL ||
+  "https://ibm-project-5fwn.onrender.com"
+).replace(/\/+$/, "");
 const SAMPLE_RATE_MS = 20;
 const deviceId = `web-${crypto.randomUUID ? crypto.randomUUID() : Date.now()}`;
 
