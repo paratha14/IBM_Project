@@ -40,18 +40,23 @@ from backend.models.loader import VideoModelBundle
 logger = logging.getLogger(__name__)
 
 # ---------------------------------------------------------------------------
-# MediaPipe lazy import (so the rest of the app works if mediapipe not installed)
+# MediaPipe lazy import (so the rest of the app works if mediapipe is absent or
+# partially installed / incompatible in the deployment environment)
 # ---------------------------------------------------------------------------
 try:
     import mediapipe as mp
 
+    if not hasattr(mp, "solutions"):
+        raise AttributeError("mediapipe.solutions is unavailable in this installation")
+
     _mp_pose = mp.solutions.pose
     _MEDIAPIPE_AVAILABLE = True
-except ImportError:
+except Exception as exc:  # broad exception so startup does not fail on a broken install
     _MEDIAPIPE_AVAILABLE = False
     logger.warning(
-        "mediapipe is not installed. Video prediction will not be available. "
-        "Install it with: pip install mediapipe"
+        "mediapipe is unavailable or incompatible in this environment; "
+        "video prediction will not be available. Error: %s",
+        exc,
     )
 
 

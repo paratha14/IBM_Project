@@ -13,7 +13,7 @@ scipy>=1.13.0           # Butterworth filter for gravity removal
 
 # Video model
 opencv-python>=4.9.0    # video frame reading
-mediapipe>=0.10.0       # pose landmark extraction
+mediapipe==0.10.14      # stable pose landmark extraction on server deployments
 
 # Request/response validation
 pydantic>=2.6.0
