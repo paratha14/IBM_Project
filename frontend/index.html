@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07111f" />
+    <title>MotionSense | Activity Predictor</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header>
+        <p class="eyebrow">Human activity recognition</p>
+        <h1>MotionSense</h1>
+        <p class="subtitle">Choose an input source and let the model identify the activity.</p>
+      </header>
+
+      <section class="panel" aria-labelledby="input-heading">
+        <div class="mode-switch" role="tablist" aria-label="Prediction input">
+          <button class="mode-button active" id="sensorTab" role="tab" aria-selected="true" data-mode="sensor">Sensor</button>
+          <button class="mode-button" id="videoTab" role="tab" aria-selected="false" data-mode="video">Video</button>
+        </div>
+
+        <div class="mode-content" id="sensorPanel" role="tabpanel" aria-labelledby="sensorTab">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Live device motion</p>
+              <h2 id="input-heading">Accelerometer & gyroscope</h2>
+            </div>
+            <span class="status" id="sensorStatus">Not connected</span>
+          </div>
+          <p class="hint">Keep this page open on a phone, then move normally. A reading is sent 50 times per second and the first prediction arrives after about 2.6 seconds.</p>
+          <div class="readings" aria-label="Latest sensor readings">
+            <div><span>Accel X</span><strong id="accelX">—</strong></div>
+            <div><span>Accel Y</span><strong id="accelY">—</strong></div>
+            <div><span>Accel Z</span><strong id="accelZ">—</strong></div>
+            <div><span>Gyro X</span><strong id="gyroX">—</strong></div>
+            <div><span>Gyro Y</span><strong id="gyroY">—</strong></div>
+            <div><span>Gyro Z</span><strong id="gyroZ">—</strong></div>
+          </div>
+          <button class="primary-button" id="sensorButton">Start motion detection</button>
+          <p class="message" id="sensorMessage" aria-live="polite">Uses your browser’s DeviceMotionEvent sensor API.</p>
+        </div>
+
+        <div class="mode-content hidden" id="videoPanel" role="tabpanel" aria-labelledby="videoTab">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Upload a clip</p>
+              <h2>Video prediction</h2>
+            </div>
+          </div>
+          <label class="drop-zone" for="videoInput" id="dropZone">
+            <span class="upload-icon">↑</span>
+            <strong id="videoName">Choose a video</strong>
+            <span>MP4, MOV, or AVI · up to 100 MB</span>
+            <input id="videoInput" type="file" accept="video/mp4,video/quicktime,video/x-msvideo,.mp4,.mov,.avi" hidden />
+          </label>
+          <button class="primary-button" id="videoButton" disabled>Predict from video</button>
+          <p class="message" id="videoMessage" aria-live="polite">Select a video clip to begin.</p>
+        </div>
+      </section>
+
+      <section class="result-card" aria-live="polite" aria-labelledby="resultTitle">
+        <p class="section-kicker">Latest result</p>
+        <h2 id="resultTitle">Waiting for input</h2>
+        <div class="result-meta">
+          <span id="confidence">Confidence —</span>
+          <span id="timing">Model ready when backend is running</span>
+        </div>
+        <div class="score-list" id="scoreList"></div>
+      </section>
+
+      <p class="footer-note">Backend: <code id="backendUrl">http://localhost:8000</code></p>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
