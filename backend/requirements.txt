@@ -1,0 +1,24 @@
+# ─────────────────────────────────────────────────────────────
+# Human Activity Tracker — Backend Dependencies
+# ─────────────────────────────────────────────────────────────
+
+# Web framework
+fastapi>=0.111.0
+uvicorn[standard]>=0.29.0
+
+# Sensor model
+torch>=2.2.0
+numpy>=1.26.0
+scipy>=1.13.0           # Butterworth filter for gravity removal
+
+# Video model
+opencv-python>=4.9.0    # video frame reading
+mediapipe>=0.10.0       # pose landmark extraction
+
+# Request/response validation
+pydantic>=2.6.0
+python-multipart>=0.0.9 # file upload support (required by FastAPI)
+
+# WebSocket streaming
+websockets>=12.0
+
