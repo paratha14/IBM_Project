@@ -1,6 +1,6 @@
 const API_URL = (
   new URLSearchParams(location.search).get("api") ||
-  import.meta.env.VITE_API_URL).replace(/\/+$/, "");
+  import.meta.env.API_URL).replace(/\/+$/, "");
 const SAMPLE_RATE_MS = 20;
 const deviceId = `web-${crypto.randomUUID ? crypto.randomUUID() : Date.now()}`;
 
